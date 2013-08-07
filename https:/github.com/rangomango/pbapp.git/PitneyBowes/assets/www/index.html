@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/jquery.mobile-1.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<link href="css/rating_simple.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/rating_simple.js"></script>
+<script>
+  $( "#mypanel" ).panel( "open" , optionsHash );
+  </script>
+<script src="js/fastclick.js"></script>
+<script language="javascript" type="text/javascript">
+$(function() {
+$("#rating_simple").webwidget_rating_simple({
+rating_star_length: '5',
+rating_initial_value: '',
+rating_function_name: '',
+directory: 'images'
+});
+});
+</script>
+<script language="javascript" type="text/javascript">
+$(function() {
+$("#rating_simple2").webwidget_rating_simple({
+rating_star_length: '5',
+rating_initial_value: '',
+rating_function_name: '',
+directory: 'images'
+});
+});
+</script>
+<script type="text/javascript" src="cordova.js"></script>
+  <script>
+  $( "#mypanel" ).panel( "open" , optionsHash );
+  </script>
+  <script src="js/fastclick.js"></script>
+         <script type="text/javascript">
+            function onBodyLoad()
+            {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+        function success(resultArray) {
+        
+        alert("Scanned " + resultArray[0] + " code: " + resultArray[1]);
+        
+        doAjax();
+        
+        function doAjax() {
+	alert(resultArray[0]);
+		/*
+		 * Sending an AJAX request using jQuery is very easy. We 
+		 * specify a URL and some options and jQuery
+		 * will handle the rest. 
+		 * 
+		 * Instead of having to deal with readyState directly jQuery gives us some
+		 * events we can listen to.
+		 */
+		
+		jQuery.ajax(
+			"http://axispbcusen.appspot.com/_api/info/885909510269",
+			{
+				dataType: "json",
+				type: "GET", //GET is the default but just wanted to show this option
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert(errorThrown);
+				},
+				success: function(data, textStatus, jqXHR) {
+					/*
+					 * jQuery will automatically parse the returned JSON so 
+					 * data should be our deserialized object.
+					 */
+					var htmlString = "";
+					
+							htmlString += data.Name;
+						
+					
+					alert("help");
+				}
+			}
+		);
+		
+	}
+
+          
+            }
+
+            function failure(error) {
+                alert("Failed: " + error);
+            }
+
+            function scan() {
+                // See below for all available options. 
+                cordova.exec(success, failure, "ScanditSDK", "scan",
+                             ["RZaHvPf+EeKR4G26953k4s8Z+vdBpzgkvWC+DSxZVa4",
+                              {"beep": true,
+                              "1DScanning" : true,
+                              "2DScanning" : true,
+                              "titleMessage" : "Scan a product barcode"}]);
+            }
+
+            app.initialize();
+            </script>
+<title>Untitled Document</title>
+</head>
+
+<body onload="initFastButtons(); onBodyLoad();">
+<span id="fastclick">
+<div id="home" data-role="page">
+  <div data-role="panel" id="mypanel" data-position-fixed="false">
+    <ul data-role="listview" data-theme="f">
+      <li data-theme="b" data-icon="info" data-iconpos="right"><a data-transition="slide" style="text-decoration:none;" href="#home" >Get Help</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-2">Profile</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-3">Feedback</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-4">Confirmation</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#">Pending</a></li>
+    </ul>
+  </div>
+  <div style= "box-shadow: 0px 1px 5px #888888" data-role="header" data-theme="f"> <a href="#mypanel" data-icon="bars">Menu</a>
+    <h1></h1>
+  </div>
+  <div data-role="content">
+    <div class = "logoimg"><img src="images/logo.png" width="100" /></div>
+    <div class = "logotext">HelpMe</div>
+    <div class = "spacer">
+      <p>
+      <h1><b>Getting Help Is Easy</b></h1>
+      </p>
+      <div style="text-align:left; padding-left: 30px; padding-bottom: 75px">
+        <p>1. Find an item you need help with.</p>
+        <p>2. Press "Get Help" and scan the barcode.</p>
+        <p>3. Stay close by, a store employee will be over shortly.</p>
+      </div>
+      <form>
+        <input type="button" value="Get Help" data-theme ="f" onclick="scan()">
+      </form>
+    </div>
+  </div>
+  <div class="bcode"> 
+    <!--<img src="images/barcode.png" width="200" />--> 
+  </div>
+</div>
+<div id="page-2" data-role="page">
+  <div data-role="panel" id="mypanel" data-position-fixed="false">
+    <ul data-role="listview" data-theme="f">
+      <li data-theme="b" data-icon="info" data-iconpos="right"><a data-transition="slide" style="text-decoration:none;" href="#home" >Get Help</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-2">Profile</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-3">Feedback</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-4">Confirmation</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#">Pending</a></li>
+    </ul>
+  </div>
+  <div style= "box-shadow: 0px 1px 5px #888888"  data-role="header" data-theme="f"> <a href="#mypanel" data-icon="bars">Menu</a>
+    <h1>Profile Settings</h1>
+  </div>
+  <div data-role="content">
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" value="">
+      <input type="button" name="save" id="save" value="Save" data-theme="f">
+    </form>
+  </div>
+</div>
+<div id="page-3" data-role="page">
+  <div data-role="panel" id="mypanel" data-position-fixed="false">
+    <ul data-role="listview" data-theme="f">
+      <li data-theme="b" data-icon="info" data-iconpos="right"><a data-transition="slide" style="text-decoration:none;" href="#home" >Get Help</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-2">Profile</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-3">Feedback</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#page-4">Confirmation</a></li>
+      <li><a data-transition="slide" style="text-decoration:none;" href="#">Pending</a></li>
+    </ul>
+  </div>
+  <div style= "box-shadow: 0px 1px 5px #888888"  data-role="header" data-theme="f"> <a href="#mypanel" data-icon="bars">Menu</a>
+    <h1>Feedback</h1>
+  </div>
+  <div data-role="content">
+    <h3>We would love to hear what you think!</h3>
+    <form>
+      <input name="my_input" value="Please rate your overall experience." id="rating_simple" type="text">
+      <br />
+      <input name="my_input2" value="Please rate the employee that helped you." id="rating_simple2" type="text">
+     
+     <br />
+      <fieldset data-role="controlgroup" data-type="horizontal" data-theme="f">
+        <legend>Will you purchase the product?</legend>
+        <input type="radio" data-theme="f" data-theme-overlay="f" name="radio-choice-h-2" id="radio-choice-h-2a" value="on" checked="checked">
+        <label for="radio-choice-h-2a">Yes</label>
+        <input type="radio" data-theme="f" name="radio-choice-h-2" id="radio-choice-h-2b" value="off">
+        <label for="radio-choice-h-2b">No</label>
+    </fieldset>
+      <label for="textarea">If you gave a low rating, please let us know why.</label>
+      <textarea cols="30" rows="8" name="textarea" id="textarea"></textarea>
+      <input type="button" name="submit" id="submit" value="Submit" data-theme="f">
+    </form>
+  </div>
+</div>
+<div id="page-4" data-role="page">
+<div data-role="panel" id="mypanel" data-position-fixed="false">
+  <ul data-role="listview" data-theme="f">
+    <li data-theme="b" data-icon="info" data-iconpos="right"><a data-transition="slide" style="text-decoration:none;" href="#home" >Get Help</a></li>
+    <li><a data-transition="slide" style="text-decoration:none;" href="#page-2">Profile</a></li>
+    <li><a data-transition="slide" style="text-decoration:none;" href="#page-3">Feedback</a></li>
+    <li><a data-transition="slide" style="text-decoration:none;" href="#page-4">Confirmation</a></li>
+    <li><a data-transition="slide" style="text-decoration:none;" href="#">Pending</a></li>
+  </ul>
+</div>
+<div style= "box-shadow: 0px 1px 5px #888888"  data-role="header" data-theme="f"> <a href="#mypanel" data-icon="bars">Menu</a>
+  <h1>Feedback</h1>
+</div>
+<div data-role="content">
+  <h3>Sample popup </h3>
+  <a href="#popupDialog" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" data-transition="pop" data-icon="delete" data-theme="f">Scan</a>
+  <div data-role="popup" id="popupDialog" data-overlay-theme="f" data-theme="f" data-dismissible="false" style="max-width:400px;">
+    <div data-role="header" data-theme="f" class="ui-corner-top">
+      <h4>Help Me</h4>
+    </div>
+    <div data-role="content" data-theme="" class="ui-corner-bottom ui-content">
+      <h3 class="ui-title">A product expert will be with you shortly!</h3>
+      <h4 ><b>Est. Wait:</b> 4 Mins</h4>
+      <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="f">OK</a></div>
+  </div>
+</div>
+</span>
+</body>
+</html>
