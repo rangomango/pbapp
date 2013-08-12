@@ -31,6 +31,7 @@
     </author>
 
     <access origin="*"/>
+    <access origin="http://google.com" />
 
     <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
     <content src="index.html" />

@@ -4,16 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
-<script src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery1102.js"></script>
+<link href="css/rating_simple.css" rel="stylesheet" type="text/css">
+<!--<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery1102.js"></script>-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="js/jquery.mobile-1.3.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
-<link href="css/rating_simple.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="cordova.js"></script>
+<!--<script type="text/javascript" src="js/AJAXUsingjQuery.js"></script>-->
 <script type="text/javascript" src="js/rating_simple.js"></script>
+<script src="js/fastclick.js"></script>
 <script>
   $( "#mypanel" ).panel( "open" , optionsHash );
-  </script>
-<script src="js/fastclick.js"></script>
+</script>
 <script language="javascript" type="text/javascript">
 $(function() {
 $("#rating_simple").webwidget_rating_simple({
@@ -34,34 +37,10 @@ directory: 'images'
 });
 });
 </script>
-<script type="text/javascript" src="cordova.js"></script>
-  <script>
-  $( "#mypanel" ).panel( "open" , optionsHash );
-  </script>
-  <script src="js/fastclick.js"></script>
-         <script type="text/javascript">
-            function onBodyLoad()
-            {
-                document.addEventListener("deviceready", onDeviceReady, false);
-            }
-
-        function success(resultArray) {
-        
-        alert("Scanned " + resultArray[0] + " code: " + resultArray[1]);
-        
-        doAjax();
-        
-        function doAjax() {
-	alert(resultArray[0]);
-		/*
-		 * Sending an AJAX request using jQuery is very easy. We 
-		 * specify a URL and some options and jQuery
-		 * will handle the rest. 
-		 * 
-		 * Instead of having to deal with readyState directly jQuery gives us some
-		 * events we can listen to.
-		 */
-		
+<script type="text/javascript">
+	function doAjax() {
+	//alert("test");
+	
 		jQuery.ajax(
 			"http://axispbcusen.appspot.com/_api/info/885909510269",
 			{
@@ -77,40 +56,25 @@ directory: 'images'
 					 */
 					var htmlString = "";
 					
-							htmlString += data.Name;
+							htmlString += "<span>" + data.Name + "</span>";
 						
 					
-					alert("help");
+					//$("test").html(htmlString);
+					
+					alert(htmlString);
 				}
 			}
-		);
-		
-	}
+			);
+}
+</script>
 
-          
-            }
-
-            function failure(error) {
-                alert("Failed: " + error);
-            }
-
-            function scan() {
-                // See below for all available options. 
-                cordova.exec(success, failure, "ScanditSDK", "scan",
-                             ["RZaHvPf+EeKR4G26953k4s8Z+vdBpzgkvWC+DSxZVa4",
-                              {"beep": true,
-                              "1DScanning" : true,
-                              "2DScanning" : true,
-                              "titleMessage" : "Scan a product barcode"}]);
-            }
-
-            app.initialize();
-            </script>
 <title>Untitled Document</title>
 </head>
 
 <body onload="initFastButtons(); onBodyLoad();">
+  
 <span id="fastclick">
+  
 <div id="home" data-role="page">
   <div data-role="panel" id="mypanel" data-position-fixed="false">
     <ul data-role="listview" data-theme="f">
@@ -136,9 +100,8 @@ directory: 'images'
         <p>2. Press "Get Help" and scan the barcode.</p>
         <p>3. Stay close by, a store employee will be over shortly.</p>
       </div>
-      <form>
-        <input type="button" value="Get Help" data-theme ="f" onclick="scan()">
-      </form>
+        <input name="test" type="button" value="Get Help" data-theme ="f" onclick="doAjax()">
+  
     </div>
   </div>
   <div class="bcode"> 
@@ -227,5 +190,6 @@ directory: 'images'
   </div>
 </div>
 </span>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
 </body>
 </html>
